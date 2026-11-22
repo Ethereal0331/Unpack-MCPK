@@ -491,6 +491,10 @@ static int cmd_unpack(const char *src, const char *out)
     return nfail ? 1 : 0;
 }
 
+#ifndef MCP_VERSION
+#define MCP_VERSION "dev"
+#endif
+
 static int usage(void)
 {
     printf("mcp - MCPK unpacker / decompiler.\n\n"
@@ -498,7 +502,8 @@ static int usage(void)
            "    mcp unpack <input.mcp> [output_dir]     (writes decompiled .py sources)\n"
            "    mcp info   <input.mcp>\n\n"
            "Options:\n"
-           "    -v, --verbose   show per-file details (default: only step summaries)\n");
+           "    -v, --verbose   show per-file details (default: only step summaries)\n"
+           "    -V, --version   print the version and exit\n");
     return 0;
 }
 
@@ -518,6 +523,12 @@ int main(int argc, char **argv)
         args[n++] = argv[i];
     }
     (void)verbose;
+
+    if (n >= 1 && (!strcmp(args[0], "-V") || !strcmp(args[0], "--version")
+                   || !strcmp(args[0], "version"))) {
+        printf("mcp %s\n", MCP_VERSION);
+        return 0;
+    }
 
     if (n == 0 || !strcmp(args[0], "-h") || !strcmp(args[0], "--help")
         || !strcmp(args[0], "help"))

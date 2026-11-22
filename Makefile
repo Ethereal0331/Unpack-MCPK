@@ -9,6 +9,10 @@
 #   make check                                  ABI + smoke test
 #   make clean
 
+# Single source of truth for the version: passed to the compiler and used for
+# the release tag.
+VERSION ?= 1.0.0
+
 .DEFAULT_GOAL := all
 
 CC      ?= cc
@@ -45,7 +49,7 @@ OBJS := $(patsubst csrc/%.c,$(BUILD)/%.o,$(CSRC)) $(PYCDC_O)
 # ------------------------------------------------------------------- flags
 CFLAGS  ?= -O2
 CFLAGS  += -Wall -Wextra -std=c11 -D_GNU_SOURCE
-CPPFLAGS += -Icsrc
+CPPFLAGS += -Icsrc -DMCP_VERSION=\"$(VERSION)\"
 LDFLAGS += -static
 LDLIBS  += -lz -lm
 
