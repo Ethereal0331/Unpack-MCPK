@@ -1,0 +1,16 @@
+# Build output
+.build/
+*.o
+*.tmp
+/mcp
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Editor
+.vscode/
+.idea/
+
+# Local test material (game assets, not distributed)
+*.mcp
