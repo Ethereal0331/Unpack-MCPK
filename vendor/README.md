@@ -1,7 +1,8 @@
 # vendored binaries
 
 `pycdc` — decompiler used by `mcp unpack`, built from
-https://github.com/ejfkdev/pycdc (v0.8.2, MIT).
+https://github.com/ejfkdev/pycdc (v0.8.2, MIT). Its licence is kept
+in `LICENSE.pycdc`.
 
 Built static for Android/bionic so it needs no shared libraries:
 
